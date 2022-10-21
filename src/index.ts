@@ -1,5 +1,5 @@
 import { data } from "./data/data"
-import {ProjectListView} from "./views"
+import {ProjectListView, View} from "./views"
 import {ProjectList} from "./models"
 
 type Data = {
@@ -19,8 +19,8 @@ class Controller {
     this.projectList = new ProjectList(data);
   }
 
-  generateProjectView(): ProjectListView{
-    return new ProjectListView(this.projectList)
+  generateProjects(): ProjectList{
+    return this.projectList
   }
 }
 
@@ -31,7 +31,7 @@ function renderAppView(appView: ProjectListView, parentElement:HTMLElement) : vo
   //clear any content that might be there already
   parentElement.textContent = "";
   //render the app view into that parent element
-  parentElement.appendChild(appView.render());    
+  parentElement.append(appView.render());    
 }
 
 
@@ -41,8 +41,10 @@ function renderApp(appView: ProjectListView, parentElement:HTMLElement): void {
   //add a change listener to the app model that automatically
   //re-renders the app view whenever the model changes
 }
-
-renderApp(list.generateProjectView(), document.querySelector("#root")!);
+//list.generateProjectView()
+console.log(list.generateProjects())
+const view = new View(list)
+renderApp(view, document.querySelector("#root")!);
 
 
 
