@@ -2,6 +2,20 @@ import { ProjectList, ProjectTemplate } from "./models";
 
 export class View {
     constructor() {}
+
+    createElement(tag: string, className: string) {
+      const element = document.createElement(tag)
+  
+      if (className) element.classList.add(className)
+  
+      return element
+    }
+  
+    getElement(selector: string) {
+      const element = document.querySelector(selector)
+  
+      return element
+    }
   
     // render() {
     //   return undefined;
