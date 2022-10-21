@@ -6,6 +6,10 @@
 
 body {
     background-color: #ffdf6d;
+    font-family: 'Poppins', sans-serif;
+
+    margin-left: 10%;
+    margin-right: 10%;
   }
 
 img {
@@ -16,7 +20,7 @@ img {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 1200px;
+    width: 350px;
     height: 50px;
     border-top: 3px solid #ccc;
     border-left: 3px solid #ccc;
@@ -99,4 +103,104 @@ img {
     border-bottom: 2px solid #4f4f50;
     background: #999;
     justify-content: center;
+  }
+
+
+  .content-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 300px;
+    border-top: 3px solid #ccc;
+    border-left: 3px solid #ccc;
+    border-right: 3px solid #4f4f50;
+    border-bottom: 3px solid #4f4f50;
+    background-color: #999;
+  }
+
+  .content-area-background {
+    width: 340px;
+    height: 290px;
+      border-top: 3px solid #ccc;
+      border-left: 3px solid #ccc;
+      border-right: 3px solid #4f4f50;
+      border-bottom: 3px solid #4f4f50;
+      background: #999;
+  }
+
+  article {
+    font-size: 14px;
+
+  }
+  img {
+    max-width: 200px;
+  }
+
+  figure {
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+  }
+
+  section div {
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    align-items: center;
+  }
+
+  
+  figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  figure img {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .header {
+    border: 2px solid red;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+
+
+  }
+
+  .icon {
+    width: 50px;
+    height: 50px;
+    padding-right: 25px-;
+  }
+
+  .name-div {
+    border: 2px solid green;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+
+  .name {
+    font-size: 70px;
+    font-family: 'Poppins';
+    font-weight: 600;
+    margin-bottom: -20px;
+
+  }
+
+  .subtitle {
+    font-size: 40px;
+    font-family: 'Poppins';
+    font-weight: 500;
+
   }
