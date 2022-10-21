@@ -1,4 +1,4 @@
-import { data } from "data"
+import { data } from "./data/data"
 
 type Data = {
     name: string,
@@ -88,7 +88,7 @@ class ProjectListView extends View {
 class Controller {
 
   data: Data[];
-  projectList: ProjectTemplate[];
+  projectList: ProjectList;
 
   constructor(data: Data[]) {
     this.data = data;
@@ -118,7 +118,7 @@ function renderApp(appView: ProjectListView, parentElement:HTMLElement): void {
   //re-renders the app view whenever the model changes
 }
 
-renderApp(list.generateProjectView(), document.querySelector("#root"));
+renderApp(list.generateProjectView(), document.querySelector("#root")!);
 
 
 
