@@ -1,88 +1,12 @@
 import { data } from "./data/data"
+import {ProjectListView} from "./views"
+import {ProjectTemplate, ProjectList} from "./models"
 
 type Data = {
     name: string,
     description: string,
     imageURL: string,
     linkURL: string,
-}
-
-class Model {
-  constructor() {}
-}
-
-class ProjectTemplate {
-  name: string;
-  description: string;
-  screenshotURL: string;
-  linkURL: string;
-  markup: string;
-
-  constructor(n: string, d: string, s: string, l: string) {
-    this.name = n;
-    this.description = d;
-    this.screenshotURL = s;
-    this.linkURL = l;
-    this.markup = "";
-  }
-
-  generateMarkup(): void {
-    this.markup = "";
-  }
-
-  getMarkup(): string {
-    return this.markup;
-  }
-}
-
-class ProjectList {
-  projects: ProjectTemplate[];
-
-  constructor(
-    projects: {
-      name: string,
-      description: string,
-      imageURL: string,
-      linkURL: string,
-    }[]
-  ) {
-    this.projects = projects.map(
-      (e) => new ProjectTemplate(e.name, e.description, e.imageURL, e.linkURL)
-    );
-  }
-
-  getProjects(): ProjectTemplate[]{
-    return [...this.projects];
-  }
-}
-
-class View {
-  constructor() {}
-
-  // render() {
-  //   return undefined;
-  // }
-
-}
-
-class ProjectListView extends View {
-
-  projectList: ProjectList;
-
-  constructor(projectList: ProjectList) {
-    super();
-    this.projectList = projectList;
-  }
-
-  render(): HTMLUListElement {
-    let ul = document.createElement("ul")
-    this.projectList.getProjects().forEach(project => {
-      let li = ul.appendChild(document.createElement("li"));
-      li.textContent = project.name;
-    })
-
-    return ul;
-  }
 }
 
 class Controller {
