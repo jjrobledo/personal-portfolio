@@ -2,7 +2,7 @@ export const data = [
   {
     name: "Drizzly",
     description:
-      "tDrizz.ly provides users with a simple interface to give them the weather information they want in a beautiful way.his project 1",
+      "Drizz.ly provides users with a simple interface to give them the weather information they want in a beautiful way.",
     imageURL: "img",
     linkURL: "https://drizzly.netlify.app/",
   },
