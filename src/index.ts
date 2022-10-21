@@ -1,6 +1,6 @@
 import { data } from "./data/data"
 import {ProjectListView} from "./views"
-import {ProjectTemplate, ProjectList} from "./models"
+import {ProjectList} from "./models"
 
 type Data = {
     name: string,
