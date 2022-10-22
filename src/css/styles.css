@@ -34,10 +34,6 @@ img {
     align-items: center;
   }
 
-  .bar-container {
-    
-  }
-  
   .left {
     flex-grow: 1;
     display: flex;
@@ -132,11 +128,7 @@ img {
     font-size: 14px;
 
   }
-
-
-  figure {
-  }
-
+  
   section {
     display: flex;
     flex-direction: column;
