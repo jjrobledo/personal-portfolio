@@ -21,4 +21,12 @@ export const data = [
     linkURL:
       "https://trello.com/invite/b/Hr2iWZoZ/a4e768bc26ffaa77d5273966efc852d0/project-management",
   },
+  {
+    name: "Schoolpy",
+    description:
+      "A social app that lets users share multimedia posts on an interactive web map.",
+    imageURL: "../images/outdoor.png",
+    linkURL:
+      "https://trello.com/invite/b/Hr2iWZoZ/a4e768bc26ffaa77d5273966efc852d0/project-management",
+  },
 ];

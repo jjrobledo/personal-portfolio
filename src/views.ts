@@ -2,33 +2,51 @@ import { ProjectList, ProjectTemplate } from "./models";
 
 
 export class View {
-    //win = new CreateWindow()
+
+    list: ProjectList;
+    header: HTMLElement;
+    projects: HTMLElement;
+    about: HTMLElement;
 
 
-    constructor(list) {
+    constructor(list: ProjectList) {
       this.list = list
-      this.test = new ProjectListView(list.generateProjects())
-      this.header = new Header()
+      this.header = new Header().generateHeader()
+      this.projects = new ProjectListView(list).render()
+      this.about = new About().generateAbout()
     }
+
     render() {
-      return this.header.generateHeader()
-      //return this.test.render();
+      return [this.header,  this.about, this.projects]
     }
-  
   }
   
   export class ProjectListView {
   
     projectList: ProjectList;
+
   
     constructor(projectList: ProjectList) {
       this.projectList = projectList;
+
     }
   
     render(): HTMLDivElement {
       let div = document.createElement("div")
+      const btnLeft = document.createElement('button')
+      const btnRight = document.createElement('button')
+      div.classList.add('projects-div')
+      btnLeft.classList.add('window-btn', 'window-btn-left')
+      btnRight.classList.add('window-btn', 'window-btn-right')
+      btnLeft.innerHTML = '←'
+      btnRight.innerHTML = '→'
+
+      div.append(btnLeft)
+      div.append(btnRight)
+  
+      
       this.projectList.getProjects().forEach((project: ProjectTemplate) => {
-        const win = new CreateWindow(project)
+        const win = new CreateProjectWindows(project)
         div.append(win.generateWindow())
       })
   
@@ -73,14 +91,12 @@ class Header extends CreateElement {
     const socialDiv = this.createElement('div', "social-icons")
     const nameH1 = this.createElement('h1', 'name')
     const subtitleH2 = this.createElement('h2', 'subtitle')
-    const linkedinIcn = this.createElement('img', 'icon linkedin-icn')
-    const mailIcn = this.createElement('img', 'icon mail-icn')
-    const gitIcn = this.createElement('img', 'icon git-icn')
+    const linkedinIcn = this.createElement('img', 'icon linkedin-icn') as HTMLImageElement
+    const mailIcn = this.createElement('img', 'icon mail-icn') as HTMLImageElement
+    const gitIcn = this.createElement('img', 'icon git-icn') as HTMLImageElement
 
-    
     nameH1.innerHTML = this.name;
     subtitleH2.innerHTML = this.subtitle;
-    
 
     linkedinIcn.src = "./images/linkedin.svg"
     mailIcn.src = "./images/envelope-solid.svg"
@@ -92,10 +108,31 @@ class Header extends CreateElement {
     
     return headerDiv;
   }
-
 }
 
-class CreateWindow extends CreateElement {
+class About extends CreateElement {
+  
+  constructor() {
+    super()
+
+  }
+
+  generateAbout() {
+    const aboutDiv = this.createElement('div', 'about')
+    const h3 = this.createElement('h3', 'about-heading')
+    const p = this.createElement('p', 'about-text')
+
+    h3.innerHTML= "About Me"
+    p.innerHTML = "archaeologist excited to shift to the challenging and exciting world of software engineering. I enjoy learning new technologies and can pick up new languages and frameworks quickly. My background in project and partnership management enables me to approach each project with a well-rounded and business-focused perspective."
+
+    aboutDiv.append(h3, p)
+
+
+    return aboutDiv;
+  }
+}
+
+class CreateProjectWindows extends CreateElement {
 
   titleText: string;
   imgURL: string;
@@ -111,7 +148,6 @@ class CreateWindow extends CreateElement {
   }
 
   generateWindow(): HTMLElement {
-      
     const windowArea = this.createElement('div', 'window')
     const menubar = this.createElement('div', 'menu-bar')
     const spacerLeft = this.createElement('div', 'entry spacer-left')
@@ -126,14 +162,13 @@ class CreateWindow extends CreateElement {
     const contentArea = this.createElement('div', "content-area");
     const contentAreaBG = this.createElement('div', 'content-area-background')
     const contentArticle = this.createElement('article', '');
-    const contentSection = this.createElement('section', '');
+    const contentSection = this.createElement('section', 'window-section');
     const contentFigure = this.createElement('figure', '');
-    const contentImg = this.createElement('img', '')
-    const contentDiv = this.createElement('div', '')
-    const contentH1 = this.createElement('h1', '')
-    const contentP = this.createElement('p', '')
-    const contentA = this.createElement('a', '')
-
+    const contentImg = this.createElement('img', 'window-img') as HTMLImageElement
+    const contentDiv = this.createElement('div', 'window-content-div')
+    const contentH1 = this.createElement('h1', 'window-heading')
+    const contentP = this.createElement('p', 'window-text')
+    const contentA = this.createElement('a', 'window-link') as HTMLAnchorElement
 
     centerText.innerText = this.titleText;
     spacerLeft.append(minimize);
@@ -148,6 +183,7 @@ class CreateWindow extends CreateElement {
     contentP.innerHTML = this.description;
     contentA.innerHTML = "See the live version"
     contentA.href = this.linkURL;
+
     contentArea.append(contentAreaBG);
     contentAreaBG.append(contentArticle);
     contentArticle.append(contentSection);
@@ -158,11 +194,12 @@ class CreateWindow extends CreateElement {
     contentDiv.append(contentP)
     contentDiv.append(contentA)
 
+    
+
     windowArea.append(menubar)
     windowArea.append(contentArea)
 
     return windowArea;
-
   }
 
 }
