@@ -3,11 +3,10 @@ import { ProjectList, ProjectTemplate } from "./models";
 
 export class View {
 
-    listOfProjects: ProjectList;
-    header: HTMLElement;
-    projects: HTMLElement;
-    about: HTMLElement;
-
+    private listOfProjects: ProjectList;
+    private header: HTMLElement;
+    private projects: HTMLElement;
+    private about: HTMLElement;
 
     constructor(listOfProjects: ProjectList) {
       this.listOfProjects = listOfProjects
@@ -16,22 +15,21 @@ export class View {
       this.about = new About().generateAbout()
     }
 
-    render() {
+    public render() {
       return [this.header,  this.about, this.projects]
     }
   }
   
   export class ProjectListView {
   
-    projectList: ProjectList;
+    private projectList: ProjectList;
 
-  
     constructor(projectList: ProjectList) {
       this.projectList = projectList;
 
     }
   
-    render(): HTMLDivElement {
+    public render(): HTMLDivElement {
       let div = document.createElement("div")
       const btnLeft = document.createElement('button')
       const btnRight = document.createElement('button')
@@ -57,10 +55,9 @@ export class View {
 class CreateElement {
 
   constructor() {
-
   }
 
-  createElement(tag: string, className: string) {
+  public createElement(tag: string, className: string) {
     const element = document.createElement(tag)
 
     if (className) element.classList.add.apply(element.classList, className.split(" "))
@@ -68,7 +65,7 @@ class CreateElement {
     return element
   }
 
-  getElement(selector: string) {
+  public getElement(selector: string) {
     const element = document.querySelector(selector)
 
     return element
@@ -76,8 +73,8 @@ class CreateElement {
 }
 
 class Header extends CreateElement {
-  name: string;
-  subtitle: string;
+  private name: string;
+  private subtitle: string;
 
   constructor() {
     super()
@@ -85,7 +82,7 @@ class Header extends CreateElement {
     this.subtitle = 'Software Engineer'
   }
 
-  generateHeader() {
+  public generateHeader() {
     const headerDiv = this.createElement('div', 'header')
     const nameDiv = this.createElement('div', 'name-div')
     const socialDiv = this.createElement('div', "social-icons")
@@ -114,10 +111,9 @@ class About extends CreateElement {
   
   constructor() {
     super()
-
   }
 
-  generateAbout() {
+  public generateAbout() {
     const aboutDiv = this.createElement('div', 'about')
     const h3 = this.createElement('h3', 'about-heading')
     const p = this.createElement('p', 'about-text')
@@ -134,10 +130,10 @@ class About extends CreateElement {
 
 class CreateProjectWindows extends CreateElement {
 
-  titleText: string;
-  imgURL: string;
-  linkURL: string;
-  description: string;
+  private titleText: string;
+  private imgURL: string;
+  private linkURL: string;
+  private description: string;
 
   constructor(project: ProjectTemplate) {
     super()
@@ -147,7 +143,7 @@ class CreateProjectWindows extends CreateElement {
     this.description = project.getDescription();
   }
 
-  generateWindow(): HTMLElement {
+  public generateWindow(): HTMLElement {
     const windowArea = this.createElement('div', 'window')
     const menubar = this.createElement('div', 'menu-bar')
     const spacerLeft = this.createElement('div', 'entry spacer-left')

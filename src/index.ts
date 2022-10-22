@@ -9,50 +9,6 @@ type Data = {
     linkURL: string,
 }
 
-/* class WindowSlider {
-  windows: NodeListOf<Element>
-  projects: Element
-  currentWindow: number;
-  maxWindows: number;
-  btnLeft: Element
-  btnRight: Element
-
-  constructor() {
-    this.windows = document.querySelectorAll('.window')
-    this.projects = document.querySelector('.projects-div')!
-    this.btnRight = document.querySelector('.window-btn-right')!
-    this.btnLeft = document.querySelector('.window-btn-left')!
-    this.projects.style.overflow = 'visible'
-    this.currentWindow = 0;
-    this.maxWindows = this.windows.length;
-    console.log(this.windows)
-  }
-
-  goToWindow(windowNumber) {
-    this.windows.forEach((window, i) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
-  }
-
-  nextWindow(): void {
-    console.log(this.windows)
-    if (this.currentWindow === this.maxWindows - 1) {
-      this.currentWindow = 0;
-    } else {
-      this.currentWindow++;
-    }
-    this.goToWindow(this.currentWindow);
-  }
-  
-  prevWindow():void {
-    if (this.currentWindow === 0) {
-      this.currentWindow = this.maxWindows - 1;
-    } else {
-      this.currentWindow--;
-    }
-    this.goToWindow(this.currentWindow);
-  }
-} */
-
-
 class Controller {
 
   private data: Data[];
@@ -62,7 +18,7 @@ class Controller {
 
   constructor(data: Data[]) {
     this.data = data;
-    this.projectList = new ProjectList(data);
+    this.projectList = new ProjectList(this.data);
     this.view = new View(this.projectList)
     this.root = document.querySelector("#root")!;
 
@@ -124,4 +80,47 @@ const right = document.querySelector('.window-btn-right')!
 right.addEventListener('click', nextWindow)
 
 
+
+/* class WindowSlider {
+  windows: NodeListOf<Element>
+  projects: Element
+  currentWindow: number;
+  maxWindows: number;
+  btnLeft: Element
+  btnRight: Element
+
+  constructor() {
+    this.windows = document.querySelectorAll('.window')
+    this.projects = document.querySelector('.projects-div')!
+    this.btnRight = document.querySelector('.window-btn-right')!
+    this.btnLeft = document.querySelector('.window-btn-left')!
+    this.projects.style.overflow = 'visible'
+    this.currentWindow = 0;
+    this.maxWindows = this.windows.length;
+    console.log(this.windows)
+  }
+
+  goToWindow(windowNumber) {
+    this.windows.forEach((window, i) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
+  }
+
+  nextWindow(): void {
+    console.log(this.windows)
+    if (this.currentWindow === this.maxWindows - 1) {
+      this.currentWindow = 0;
+    } else {
+      this.currentWindow++;
+    }
+    this.goToWindow(this.currentWindow);
+  }
+  
+  prevWindow():void {
+    if (this.currentWindow === 0) {
+      this.currentWindow = this.maxWindows - 1;
+    } else {
+      this.currentWindow--;
+    }
+    this.goToWindow(this.currentWindow);
+  }
+} */
 

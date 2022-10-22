@@ -37,7 +37,7 @@ export class ProjectTemplate {
   }
   
 export class ProjectList {
-    projects: ProjectTemplate[];
+    private projects: ProjectTemplate[];
   
     constructor(
       projects: {
@@ -52,7 +52,7 @@ export class ProjectList {
       );
     }
   
-    getProjects(): ProjectTemplate[]{
+    public getProjects(): ProjectTemplate[]{
       return [...this.projects];
     }
   }
