@@ -17,6 +17,22 @@ export class ProjectTemplate {
       this.linkURL = l;
 
     }
+
+    public getName(): string {
+      return this.name;
+    }
+
+    public getDescription(): string {
+      return this.description;
+    }
+
+    public getScreenshotURL(): string {
+      return this.screenshotURL;
+    }
+
+    public getLinkURL(): string {
+      return this.linkURL;
+    }
   
   }
   
