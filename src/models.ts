@@ -4,27 +4,20 @@ export class Model {
   }
   
 export class ProjectTemplate {
-    name: string;
-    description: string;
-    screenshotURL: string;
-    linkURL: string;
-    markup: string;
+    private name: string;
+    private description: string;
+    private screenshotURL: string;
+    private linkURL: string;
+
   
     constructor(n: string, d: string, s: string, l: string) {
       this.name = n;
       this.description = d;
       this.screenshotURL = s;
       this.linkURL = l;
-      this.markup = "";
+
     }
   
-    generateMarkup(): void {
-      this.markup = "";
-    }
-  
-    getMarkup(): string {
-      return this.markup;
-    }
   }
   
 export class ProjectList {
