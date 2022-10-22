@@ -5,16 +5,18 @@ export class View {
   private header: HTMLElement;
   private projects: HTMLElement;
   private about: HTMLElement;
+  private projectHeadingDiv;
 
   constructor(listOfProjects: ProjectList) {
     this.listOfProjects = listOfProjects;
     this.header = new Header().generateHeader();
     this.projects = new ProjectListView(this.listOfProjects).render();
     this.about = new About().generateAbout();
+    this.projectHeadingDiv = new ProjectHeader().generateProjectHeader();
   }
 
   public render(): Node[] {
-    return [this.header, this.about, this.projects];
+    return [this.header, this.about, this.projectHeadingDiv, this.projects];
   }
 }
 
@@ -143,6 +145,23 @@ class About extends CreateElement {
     aboutDiv.append(h3, p);
 
     return aboutDiv;
+  }
+}
+
+class ProjectHeader extends CreateElement {
+  constructor() {
+    super();
+  }
+
+  public generateProjectHeader(): HTMLElement {
+    const projectHeadingDiv = this.createElement("div", "projects-heading");
+    const h3 = this.createElement("h3", "project-h3");
+
+    h3.innerHTML = "Projects";
+
+    projectHeadingDiv.append(h3);
+
+    return projectHeadingDiv;
   }
 }
 

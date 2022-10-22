@@ -158,6 +158,14 @@ img {
     font-size: 20px;
   }
 
+  .projects-heading {
+    margin-bottom: 3%;
+  }
+
+  .project-h3 {
+    font-size: 45px;
+  }
+
   .window {
     position: absolute;
     top:0;
