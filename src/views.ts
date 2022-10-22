@@ -11,11 +11,11 @@ export class View {
     constructor(listOfProjects: ProjectList) {
       this.listOfProjects = listOfProjects
       this.header = new Header().generateHeader()
-      this.projects = new ProjectListView(listOfProjects).render()
+      this.projects = new ProjectListView(this.listOfProjects).render()
       this.about = new About().generateAbout()
     }
 
-    public render() {
+    public render(): Node[] {
       return [this.header,  this.about, this.projects]
     }
   }
@@ -26,7 +26,6 @@ export class View {
 
     constructor(projectList: ProjectList) {
       this.projectList = projectList;
-
     }
   
     public render(): HTMLDivElement {
@@ -41,7 +40,6 @@ export class View {
 
       div.append(btnLeft)
       div.append(btnRight)
-  
       
       this.projectList.getProjects().forEach((project: ProjectTemplate) => {
         const win = new CreateProjectWindows(project)
@@ -57,7 +55,7 @@ class CreateElement {
   constructor() {
   }
 
-  public createElement(tag: string, className: string) {
+  public createElement(tag: string, className: string): HTMLElement {
     const element = document.createElement(tag)
 
     if (className) element.classList.add.apply(element.classList, className.split(" "))
@@ -65,8 +63,8 @@ class CreateElement {
     return element
   }
 
-  public getElement(selector: string) {
-    const element = document.querySelector(selector)
+  public getElement(selector: string): Element {
+    let element = document.querySelector(selector)!;
 
     return element
   }
@@ -82,7 +80,7 @@ class Header extends CreateElement {
     this.subtitle = 'Software Engineer'
   }
 
-  public generateHeader() {
+  public generateHeader(): HTMLElement {
     const headerDiv = this.createElement('div', 'header')
     const nameDiv = this.createElement('div', 'name-div')
     const socialDiv = this.createElement('div', "social-icons")
@@ -113,7 +111,7 @@ class About extends CreateElement {
     super()
   }
 
-  public generateAbout() {
+  public generateAbout(): HTMLElement {
     const aboutDiv = this.createElement('div', 'about')
     const h3 = this.createElement('h3', 'about-heading')
     const p = this.createElement('p', 'about-text')
@@ -122,7 +120,6 @@ class About extends CreateElement {
     p.innerHTML = "archaeologist excited to shift to the challenging and exciting world of software engineering. I enjoy learning new technologies and can pick up new languages and frameworks quickly. My background in project and partnership management enables me to approach each project with a well-rounded and business-focused perspective."
 
     aboutDiv.append(h3, p)
-
 
     return aboutDiv;
   }
