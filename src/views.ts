@@ -3,16 +3,16 @@ import { ProjectList, ProjectTemplate } from "./models";
 
 export class View {
 
-    list: ProjectList;
+    listOfProjects: ProjectList;
     header: HTMLElement;
     projects: HTMLElement;
     about: HTMLElement;
 
 
-    constructor(list: ProjectList) {
-      this.list = list
+    constructor(listOfProjects: ProjectList) {
+      this.listOfProjects = listOfProjects
       this.header = new Header().generateHeader()
-      this.projects = new ProjectListView(list).render()
+      this.projects = new ProjectListView(listOfProjects).render()
       this.about = new About().generateAbout()
     }
 
