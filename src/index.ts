@@ -55,10 +55,10 @@ type Data = {
 
 class Controller {
 
-  data: Data[];
-  projectList: ProjectList;
-  view: View;
-  root: HTMLElement;
+  private data: Data[];
+  private projectList: ProjectList;
+  private view: View;
+  private root: HTMLElement;
 
   constructor(data: Data[]) {
     this.data = data;
@@ -68,20 +68,19 @@ class Controller {
 
   }
 
-  generateProjects(): ProjectList{
+  public generateProjects(): ProjectList{
     return this.projectList
   }
 
-  renderAppView(appView: View, parentElement:HTMLElement) {
+  private renderAppView(appView: View, parentElement:HTMLElement) {
   parentElement.textContent = "";
-  //render the app view into that parent element
   const views = Array.from(appView.render())
   views.forEach((element:any) => {
     parentElement.append(element);
   });
   }
 
-  renderApp() {
+  public renderApp() {
     this.renderAppView(this.view, this.root);
   }
 }
@@ -96,8 +95,10 @@ let currentWindow = 0;
 const maxWindows = windows.length;
 
 function goToWindow(windowNumber: number) {
-  windows.forEach((window:HTMLElement, i:number) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
+  windows.forEach((window:Element, i:number) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
 }
+
+goToWindow(0);
 
 function nextWindow(): void {
   if (currentWindow === maxWindows - 1) {
