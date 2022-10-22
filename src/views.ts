@@ -141,10 +141,10 @@ class CreateProjectWindows extends CreateElement {
 
   constructor(project: ProjectTemplate) {
     super()
-    this.titleText = project.name;
-    this.imgURL = project.screenshotURL;
-    this.linkURL = project.linkURL;
-    this.description = project.description;
+    this.titleText = project.getName();
+    this.imgURL = project.getScreenshotURL();
+    this.linkURL = project.getLinkURL();
+    this.description = project.getDescription();
   }
 
   generateWindow(): HTMLElement {
