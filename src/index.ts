@@ -1,16 +1,15 @@
-import { data } from "./data/data"
-import {View} from "./views"
-import {ProjectList} from "./models"
+import { data } from "./data/data";
+import { View } from "./views";
+import { ProjectList } from "./models";
 
 type Data = {
-    name: string,
-    description: string,
-    imageURL: string,
-    linkURL: string,
-}
+  name: string;
+  description: string;
+  imageURL: string;
+  linkURL: string;
+};
 
 class Controller {
-
   private data: Data[];
   private projectList: ProjectList;
   private view: View;
@@ -19,21 +18,20 @@ class Controller {
   constructor(data: Data[]) {
     this.data = data;
     this.projectList = new ProjectList(this.data);
-    this.view = new View(this.projectList)
+    this.view = new View(this.projectList);
     this.root = document.querySelector("#root")!;
-
   }
 
-  public generateProjects(): ProjectList{
-    return this.projectList
+  public generateProjects(): ProjectList {
+    return this.projectList;
   }
 
-  private renderAppView(appView: View, parentElement:HTMLElement) {
-  parentElement.textContent = "";
-  const views = Array.from(appView.render())
-  views.forEach((element:any) => {
-    parentElement.append(element);
-  });
+  private renderAppView(appView: View, parentElement: HTMLElement) {
+    parentElement.textContent = "";
+    const views = Array.from(appView.render());
+    views.forEach((element: any) => {
+      parentElement.append(element);
+    });
   }
 
   public renderApp() {
@@ -42,16 +40,19 @@ class Controller {
 }
 
 const app = new Controller(data);
-app.renderApp()
+app.renderApp();
 
-const windows = document.querySelectorAll('.window')
-const projects: HTMLElement = document.querySelector('.projects-div')!
-projects.style.overflow = 'visible'
+const windows = document.querySelectorAll(".window");
+const projects: HTMLElement = document.querySelector(".projects-div")!;
+projects.style.overflow = "visible";
 let currentWindow = 0;
 const maxWindows = windows.length;
 
 function goToWindow(windowNumber: number) {
-  windows.forEach((window:Element, i:number) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
+  windows.forEach(
+    (window: HTMLDivElement, i: number) =>
+      (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)
+  );
 }
 
 goToWindow(0);
@@ -74,12 +75,10 @@ function prevWindow(): void {
   goToWindow(currentWindow);
 }
 
-const left = document.querySelector('.window-btn-left')!
-left.addEventListener('click', prevWindow)
-const right = document.querySelector('.window-btn-right')!
-right.addEventListener('click', nextWindow)
-
-
+const left = document.querySelector(".window-btn-left")!;
+left.addEventListener("click", prevWindow);
+const right = document.querySelector(".window-btn-right")!;
+right.addEventListener("click", nextWindow);
 
 /* class WindowSlider {
   windows: NodeListOf<Element>
@@ -123,4 +122,3 @@ right.addEventListener('click', nextWindow)
     this.goToWindow(this.currentWindow);
   }
 } */
-
