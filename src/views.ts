@@ -69,11 +69,15 @@ class CreateElement {
 class Header extends CreateElement {
   private name: string;
   private subtitle: string;
+  private githubURL: string;
+  private linkedinURL: string;
 
   constructor() {
     super();
     this.name = "Jesse Robledo";
     this.subtitle = "Software Engineer";
+    this.githubURL = "https://github.com/jjrobledo";
+    this.linkedinURL = "https://www.linkedin.com/in/jjrobledo/";
   }
 
   public generateHeader(): HTMLElement {
@@ -102,7 +106,19 @@ class Header extends CreateElement {
     mailIcn.src = "./images/envelope-solid.svg";
     gitIcn.src = "./images/square-github.svg";
 
-    socialDiv.append(mailIcn, linkedinIcn, gitIcn);
+    const githubA = this.createElement("a", "header-link") as HTMLAnchorElement;
+    const linkedinA = this.createElement(
+      "a",
+      "header-link"
+    ) as HTMLAnchorElement;
+    githubA.href = this.githubURL;
+    linkedinA.href = this.linkedinURL;
+    githubA.target = "_blank";
+    linkedinA.target = "_blank";
+    githubA.appendChild(gitIcn);
+    linkedinA.appendChild(linkedinIcn);
+
+    socialDiv.append(mailIcn, linkedinA, githubA);
     nameDiv.append(nameH1, socialDiv);
     headerDiv.append(nameDiv, subtitleH2);
 
