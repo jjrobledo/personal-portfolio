@@ -193,12 +193,12 @@ img {
   
   .window-btn-left {
     left: 25%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 500%);
   }
 
   .window-btn-right {
     right: 25%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 500%);
   }
 
   .window-img {
