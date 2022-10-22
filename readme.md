@@ -18,3 +18,4 @@ To get started click [here](https://www.jesserobledo.xyz).
 
 - Update styling
 - Create mobile experience
+- Add email link
