@@ -1,5 +1,5 @@
 import { data } from "./data/data"
-import {ProjectListView, View} from "./views"
+import {View} from "./views"
 import {ProjectList} from "./models"
 
 type Data = {
