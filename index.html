@@ -1,18 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="src/css/styles.css">
-    <title>Jesse Robledo | SWE</title>
-</head>
-<body>
-    <div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Jesse Robledo | Developer</title>
+  </head>
+  <body>
+    <main>
+      <div class="header">
+        <div class="name-div">
+          <h1 class="name">Jesse Robledo</h1>
+          <div class="social-icons">
+            <a
+            class="header-link mail-icn-link"
+            href=""
 
-    <script type="module" src="./src/index.ts"></script>
-</body>
+            >
+            <img class="icon mail-icn" src="./images/envelope-solid.svg"/></a>
+            
+            <a
+              class="header-link"
+              href="https://www.linkedin.com/in/jjrobledo/"
+              target="_blank"
+              >
+            <img class="icon linkedin-icn" src="./images/linkedin.svg" /></a>
+            
+            <a
+              class="header-link"
+              href="https://github.com/jjrobledo"
+              target="_blank"
+              ><img class="icon git-icn" src="./images/square-github.svg"
+            /></a>
+          </div>
+        </div>
+        <h2 class="subtitle">Software Engineer</h2>
+      </div>
+      
+      <div class="window-div">
+
+
+          <div id="window-1"  class="window window-slide window--visible">
+            <div class="menu-bar">
+              <div class="basic-box spacer-left">
+                <div class="basic-box minimize-btn"></div>
+              </div>
+              <div class="basic-box menu-center">
+                <div class="left">
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                </div>
+                <div class="center">Outdoor Voice</div>
+                <div class="right">
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                </div>
+              </div>
+              <div class="basic-box spacer-right">
+                <div class="basic-box close-btn"></div>
+              </div>
+            </div>
+
+            <div data-target="#modal1" class="content-area show-modal">
+              <div class="content-area-background">
+                <section>
+                  <article>
+                    <figure>
+                      <img src="../static/images/outdoor.png" />
+                    </figure>
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="window-2"  class="window window-slide">
+            <div class="menu-bar">
+              <div class="basic-box spacer-left">
+                <div class="basic-box minimize-btn"></div>
+              </div>
+              <div class="basic-box menu-center">
+                <div class="left">
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                </div>
+                <div class="center">Drizzly</div>
+                <div class="right">
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                </div>
+              </div>
+              <div class="basic-box spacer-right">
+                <div class="basic-box close-btn"></div>
+              </div>
+            </div>
+
+            <div data-target="#modal2" class="content-area show-modal">
+              <div class="content-area-background">
+                <section>
+                  <article>
+                    <figure>
+                      <img src="../static/images/drizzly.png" />
+                    </figure>
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="window-3"  class="window window-slide">
+            <div class="menu-bar">
+              <div class="basic-box spacer-left">
+                <div class="basic-box minimize-btn"></div>
+              </div>
+              <div class="basic-box menu-center">
+                <div class="left">
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                </div>
+                <div class="center">Podcast App</div>
+                <div class="right">
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                  <div class="bars"></div>
+                </div>
+              </div>
+              <div class="basic-box spacer-right">
+                <div class="basic-box close-btn"></div>
+              </div>
+            </div>
+
+            <div data-target="#modal3" class="content-area show-modal">
+              <div class="content-area-background">
+                <section>
+                  <article>
+                    <figure>
+                      <img src="../static/images/pod.png" />
+                    </figure>
+                  </article>
+                </section>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel__controls">
+            <button id="prev"><</button>
+            <button id="next">></button>
+          </div>
+      </div>
+
+
+
+      </div>
+
+      <div id="modal1" class="modal-window modal hidden">
+        <div class="menu-bar">
+          <div class="basic-box spacer-left">
+            <div class="basic-box minimize-btn"></div>
+          </div>
+          <div class="basic-box menu-center">
+            <div class="left">
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+            </div>
+            <div class="center">Outdoor Voice</div>
+            <div class="right">
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+            </div>
+          </div>
+          <div class="basic-box spacer-right">
+            <div data-target="#modal1" class="basic-box close-btn close-modal"></div>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <div class="content-area-background">
+            <section class="proj-section">
+              <article class="proj-article">
+                <h3 class="proj-name">Outdoor Voice</h3>
+                <p class="proj-descrip tech">
+                  JavaScript | Node.js | React | Express.js | Mapbox | Cloudinary | MongoDB | HTML | CSS
+                </p>
+                <h4 class="probsol">Problem:</h4>
+                <p class="proj-descrip">
+                  Some social media users want to share and explore geolocated pictures on an interactive social map so that other users may explore places or things of interest. But, none of the major social media platforms place an emphasis on sharing content geographically
+                </p>
+                <h4 class="probsol">Solution:</h4>
+                <p class="proj-descrip">
+                  Outdoor Voice lets users share and explore content on an interactive web map.
+                </p>
+                <div class="link-div">
+                  <div class="link-content-div">
+                    <a class="proj-link" href="http://www.outdoorvoice.jesserobledo.xyz" target="_blank">See it live!</a>
+                  </div>
+                  <div span class="">
+                    <a class="proj-link" href="http://github.com/jjrobledo/Outdoor-Voice" target="_blank"
+                      >View the project on Github</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal2" class="modal-window modal hidden">
+        <div class="menu-bar">
+          <div class="basic-box spacer-left">
+            <div class="basic-box minimize-btn"></div>
+          </div>
+          <div class="basic-box menu-center">
+            <div class="left">
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+            </div>
+            <div class="center">Drizzly</div>
+            <div class="right">
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+              <div class="bars"></div>
+            </div>
+          </div>
+          <div class="basic-box spacer-right">
+            <div data-target="#modal2" class=" basic-box close-btn close-modal"></div>
+          </div>
+        </div>
+
+        <div class="content-area">
+          <div class="content-area-background">
+            <section class="proj-section">
+              <article class="proj-article">
+                <h3 class="proj-name">Drizzly</h3>
+                <p class="proj-descrip tech">
+                  JavaScript | HTML | CSS | OpenWeatherMap API | Geocodio API
+                </p>
+                <h4 class="probsol">Problem:</h4>
+                <p class="proj-descrip">
+                  Getting a forecast from popular weather apps can be a painful experience due to sluggish performance, intrusive pop ups, and unnecessary page elements. This prevents users from easily finding the forecast data they are looking for.
+                </p>
+                <h4 class="probsol">Solution:</h4>
+                <p class="proj-descrip">
+                  Drizzly provides users with a clean interface and simple user experience to help them find the forecast they are looking for quickly.                </p>
+                <div class="link-div">
+                  <div class="link-content-div">
+                    <a class="proj-link" href="http://www.drizzly.jesserobledo.xyz/" target="_blank">See it live!</a>
+                  </div>
+                  <div span class="">
+                    <a class="proj-link" href="http://github.com/jjrobledo/Drizzly-Weather-Forecasts" target="_blank">View the project on Github</a
+                    >
+                  </div>
+                </div>
+              </article>
+            </section>
+          </div>
+        </div>
+      </div>
+
+
+        <div id="modal3" class="modal-window modal hidden">
+          <div class="menu-bar">
+            <div class="basic-box spacer-left">
+              <div class="basic-box minimize-btn"></div>
+            </div>
+            <div class="basic-box menu-center">
+              <div class="left">
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+              </div>
+              <div class="center">Podcast App</div>
+              <div class="right">
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+                <div class="bars"></div>
+              </div>
+            </div>
+            <div class="basic-box spacer-right">
+              <div data-target="#modal3" class="basic-box close-btn close-modal"></div>
+            </div>
+          </div>
+  
+          <div class="content-area">
+            <div class="content-area-background">
+              <section class="proj-section">
+                <article class="proj-article">
+                  <h3 class="proj-name">Podcast App</h3>
+                  <p class="proj-descrip tech">
+                    JavaScript | Node.js | React | Express.js | MongoDB | HTML |
+                    CSS | JWT, Material UI
+                  </p>
+                  <h4 class="probsol">Problem:</h4>
+                  <p class="proj-descrip">
+                    Most podcast apps are integrated into large music platforms. Since these platforms are music first, it can be difficult to browse and search podcast content.
+                  </p>
+                  <h4 class="probsol">Solution:</h4>
+                  <p class="proj-descrip">
+                    Podcast App is a podcast exclusive web app that provides users with the ability to save their favorite podcasts to a feed and listen to podcast episodes without being distracted by content or features unrelated to podcasts.
+                  </p>
+                  <h4 class="probsol">Future Development:</h4>
+                  <p class="proj-descrip">
+                    Playlists, search, favorites
+                  </p>
+                  <div class="link-div">
+                    <div class="link-content-div">
+                      <a class="proj-link" href="http://www.podcast.jesserobledo.xyz" target="_blank">See it live!</a>
+                    </div>
+                    <div span class="">
+                      <a class="proj-link" href="https://github.com/jjrobledo/podcast-app" target="_blank"
+                        >View the project on Github</a
+                      >
+                    </div>
+                  </div>
+                </article>
+              </section>
+            </div>
+          </div>
+        </div>
+      <div class="overlay hidden"></div>
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>

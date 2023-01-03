@@ -19,3 +19,6 @@ To get started click [here](https://www.jesserobledo.xyz).
 - Update styling
 - Create mobile experience
 - Add email link
+- add github links to project
+- add skills section
+- add resume section
