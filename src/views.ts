@@ -16,7 +16,7 @@ export class View {
   }
 
   public render(): Node[] {
-    return [this.header, this.about, this.projectHeadingDiv, this.projects];
+    return [this.header, this.projects];
   }
 }
 
