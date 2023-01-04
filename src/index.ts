@@ -42,8 +42,8 @@ class Controller {
 const app = new Controller(data);
 app.renderApp();
 
-const windows = document.querySelectorAll(".window");
-const projects: HTMLElement = document.querySelector(".projects-div")!;
+const windows = document.querySelectorAll(".window-element");
+const projects: HTMLElement = document.querySelector(".window-div")!;
 projects.style.overflow = "visible";
 let currentWindow = 0;
 const maxWindows = windows.length;
