@@ -4,8 +4,8 @@ export class View {
   private listOfProjects: ProjectList;
   private header: HTMLElement;
   private projects: HTMLElement;
-  private about: HTMLElement;
-  private projectHeadingDiv;
+
+  
 
   constructor(listOfProjects: ProjectList) {
     this.listOfProjects = listOfProjects;
@@ -31,7 +31,7 @@ export class ProjectListView {
     let div = document.createElement("div");
     const btnLeft = document.createElement("button");
     const btnRight = document.createElement("button");
-    div.classList.add("projects-div");
+    div.classList.add("window-div");
     btnLeft.classList.add("window-btn", "window-btn-left");
     btnRight.classList.add("window-btn", "window-btn-right");
     btnLeft.innerHTML = "←";
@@ -40,9 +40,10 @@ export class ProjectListView {
     div.append(btnLeft);
     div.append(btnRight);
 
-    this.projectList.getProjects().forEach((project: ProjectTemplate) => {
+    this.projectList.getProjects().forEach((project: ProjectTemplate, index) => {
+      
       const win = new CreateProjectWindows(project);
-      div.append(win.generateWindow());
+      div.append(win.generateWindow(index));
     });
 
     return div;
@@ -179,17 +180,17 @@ class CreateProjectWindows extends CreateElement {
     this.description = project.getDescription();
   }
 
-  public generateWindow(): HTMLElement {
-    const windowArea = this.createElement("div", "window");
+  public generateWindow(windowIndex): HTMLElement {
+    const windowArea = this.createElement("div", `window-element window-${windowIndex + 1}`);
     const menubar = this.createElement("div", "menu-bar");
-    const spacerLeft = this.createElement("div", "entry spacer-left");
-    const minimize = this.createElement("div", "entry");
-    const menubarCenter = this.createElement("div", "entry menu-center");
+    const spacerLeft = this.createElement("div", "basic-box spacer-left");
+    const minimize = this.createElement("div", "basic-box");
+    const menubarCenter = this.createElement("div", "basic-box menu-center");
     const barsLeft = this.createElement("div", "left");
     const centerText = this.createElement("div", "center");
     const barsRight = this.createElement("div", "right");
-    const spacerRight = this.createElement("div", "entry spacer-right");
-    const close = this.createElement("div", "entry");
+    const spacerRight = this.createElement("div", "basic-box spacer-right");
+    const close = this.createElement("div", "basic-box");
     const bar = this.createElement("div", "bars");
     const contentArea = this.createElement("div", "content-area");
     const contentAreaBG = this.createElement("div", "content-area-background");
@@ -198,7 +199,6 @@ class CreateProjectWindows extends CreateElement {
     const contentFigure = this.createElement("figure", "");
     const contentImg = this.createElement(
       "img",
-      "window-img"
     ) as HTMLImageElement;
     const contentDiv = this.createElement("div", "window-content-div");
     const contentH1 = this.createElement("h1", "window-heading");
