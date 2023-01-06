@@ -186,15 +186,11 @@ class ProjectHeader extends CreateElement {
 class CreateProjectWindows extends CreateElement {
   private titleText: string;
   private imgURL: string;
-  private linkURL: string;
-  private description: string;
 
   constructor(project: ProjectTemplate) {
     super();
     this.titleText = project.getName();
     this.imgURL = project.getScreenshotURL();
-    this.linkURL = project.getLinkURL();
-    this.description = project.getDescription();
   }
 
   public generateMenuBar() {
@@ -248,31 +244,24 @@ class CreateProjectWindows extends CreateElement {
     const contentImg = this.createElement("img") as HTMLImageElement;
     contentArea.dataset.target = `#modal${windowIndex + 1}`;
     contentImg.src = this.imgURL;
-    /*     contentH1.innerHTML = this.titleText;
-    contentP.innerHTML = this.description;
-    contentA.innerHTML = "See the live version";
-    contentA.href = this.linkURL; */
+
     contentArea.append(contentAreaBG);
     contentAreaBG.append(contentSection);
     contentSection.append(contentArticle);
     contentArticle.append(contentFigure);
     contentFigure.append(contentImg);
-    /*     contentSection.append(contentDiv);
-    contentDiv.append(contentH1);
-    contentDiv.append(contentP);
-    contentDiv.append(contentA);
- */
 
     return contentArea;
   }
 
   public generateWindow(windowIndex: number): HTMLElement {
-    const menubar = this.generateMenuBar();
     const windowArea = this.createElement(
       "div",
       `window`,
       `window-${windowIndex + 1}`
     );
+
+    const menubar = this.generateMenuBar();
     const contentArea = this.generateWindowContent(windowIndex);
 
     windowArea.append(menubar);
