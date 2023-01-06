@@ -197,7 +197,7 @@ class CreateProjectWindows extends CreateElement {
     this.description = project.getDescription();
   }
 
-  public generateWindow(windowIndex: number): HTMLElement {
+  public generateMenuBar() {
     // menu bar
     const menubar = this.createElement("div", "menu-bar");
     const spacerLeft = this.createElement("div", "basic-box spacer-left");
@@ -230,6 +230,11 @@ class CreateProjectWindows extends CreateElement {
     spacerRight.append(close);
     menubar.append(spacerLeft, menubarCenter, spacerRight);
 
+    return menubar;
+  }
+
+  public generateWindow(windowIndex: number): HTMLElement {
+    const menubar = this.generateMenuBar();
     // window area
     const windowArea = this.createElement(
       "div",
