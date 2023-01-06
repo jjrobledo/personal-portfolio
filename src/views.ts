@@ -4,8 +4,7 @@ export class View {
   private listOfProjects: ProjectList;
   private header: HTMLElement;
   private projects: HTMLElement;
-
-  
+  private overlay: HTMLElement;
 
   constructor(listOfProjects: ProjectList) {
     this.listOfProjects = listOfProjects;
@@ -13,10 +12,11 @@ export class View {
     this.projects = new ProjectListView(this.listOfProjects).render();
     this.about = new About().generateAbout();
     this.projectHeadingDiv = new ProjectHeader().generateProjectHeader();
+    this.overlay = new Overlay().render();
   }
 
   public render(): Node[] {
-    return [this.header, this.projects];
+    return [this.header, this.projects, this.overlay];
   }
 }
 
@@ -40,24 +40,43 @@ export class ProjectListView {
     div.append(btnLeft);
     div.append(btnRight);
 
-    this.projectList.getProjects().forEach((project: ProjectTemplate, index) => {
-      
-      const win = new CreateProjectWindows(project);
-      div.append(win.generateWindow(index));
-    });
+    this.projectList
+      .getProjects()
+      .forEach((project: ProjectTemplate, index) => {
+        const win = new CreateProjectWindows(project);
+        div.append(win.generateWindow(index));
+      });
 
     return div;
+  }
+}
+
+export class Overlay {
+  public render() {
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay", "hidden");
+
+    return overlay;
   }
 }
 
 class CreateElement {
   constructor() {}
 
-  public createElement(tag: string, className: string): HTMLElement {
+  public createElement(
+    tag: string,
+    className: string,
+    id: string = ""
+  ): HTMLElement {
     const element = document.createElement(tag);
 
-    if (className)
-      element.classList.add.apply(element.classList, className.split(" "));
+    if (className || id)
+      if (className) {
+        element.classList.add.apply(element.classList, className.split(" "));
+      }
+    if (id) {
+      element.setAttribute("id", id);
+    }
 
     return element;
   }
@@ -181,7 +200,11 @@ class CreateProjectWindows extends CreateElement {
   }
 
   public generateWindow(windowIndex): HTMLElement {
-    const windowArea = this.createElement("div", `window-element window-${windowIndex + 1}`);
+    const windowArea = this.createElement(
+      "div",
+      `window`,
+      `window-${windowIndex + 1}`
+    );
     const menubar = this.createElement("div", "menu-bar");
     const spacerLeft = this.createElement("div", "basic-box spacer-left");
     const minimize = this.createElement("div", "basic-box");
@@ -192,14 +215,12 @@ class CreateProjectWindows extends CreateElement {
     const spacerRight = this.createElement("div", "basic-box spacer-right");
     const close = this.createElement("div", "basic-box");
     const bar = this.createElement("div", "bars");
-    const contentArea = this.createElement("div", "content-area");
+    const contentArea = this.createElement("div", "content-area show-modal");
     const contentAreaBG = this.createElement("div", "content-area-background");
     const contentArticle = this.createElement("article", "");
     const contentSection = this.createElement("section", "window-section");
     const contentFigure = this.createElement("figure", "");
-    const contentImg = this.createElement(
-      "img",
-    ) as HTMLImageElement;
+    const contentImg = this.createElement("img") as HTMLImageElement;
     const contentDiv = this.createElement("div", "window-content-div");
     const contentH1 = this.createElement("h1", "window-heading");
     const contentP = this.createElement("p", "window-text");
@@ -207,6 +228,8 @@ class CreateProjectWindows extends CreateElement {
       "a",
       "window-link"
     ) as HTMLAnchorElement;
+
+    contentArea.dataset.target = `#modal${windowIndex + 1}`;
 
     centerText.innerText = this.titleText;
     spacerLeft.append(minimize);
