@@ -10,8 +10,6 @@ export class View {
     this.listOfProjects = listOfProjects;
     this.header = new Header().generateHeader();
     this.projects = new ProjectListView(this.listOfProjects).render();
-    this.about = new About().generateAbout();
-    this.projectHeadingDiv = new ProjectHeader().generateProjectHeader();
     this.overlay = new Overlay().render();
   }
 
@@ -65,7 +63,7 @@ class CreateElement {
 
   public createElement(
     tag: string,
-    className: string,
+    className: string = "",
     id: string = ""
   ): HTMLElement {
     const element = document.createElement(tag);
@@ -199,7 +197,7 @@ class CreateProjectWindows extends CreateElement {
     this.description = project.getDescription();
   }
 
-  public generateWindow(windowIndex): HTMLElement {
+  public generateWindow(windowIndex: number): HTMLElement {
     const windowArea = this.createElement(
       "div",
       `window`,
