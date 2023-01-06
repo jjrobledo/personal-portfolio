@@ -25,10 +25,13 @@ main {
   overflow: hidden;
 }
 
+/* 
+this is for carousel style 2
+
 .window-div .window,
 .window-div .window--hidden {
   display: none;
-}
+} */
 
 .window {
   margin: auto;
