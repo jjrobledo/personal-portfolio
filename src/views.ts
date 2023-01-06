@@ -198,11 +198,7 @@ class CreateProjectWindows extends CreateElement {
   }
 
   public generateWindow(windowIndex: number): HTMLElement {
-    const windowArea = this.createElement(
-      "div",
-      `window`,
-      `window-${windowIndex + 1}`
-    );
+    // menu bar
     const menubar = this.createElement("div", "menu-bar");
     const spacerLeft = this.createElement("div", "basic-box spacer-left");
     const minimize = this.createElement("div", "basic-box");
@@ -213,21 +209,6 @@ class CreateProjectWindows extends CreateElement {
     const spacerRight = this.createElement("div", "basic-box spacer-right");
     const close = this.createElement("div", "basic-box");
     const bar = this.createElement("div", "bars");
-    const contentArea = this.createElement("div", "content-area show-modal");
-    const contentAreaBG = this.createElement("div", "content-area-background");
-    const contentArticle = this.createElement("article", "");
-    const contentSection = this.createElement("section", "window-section");
-    const contentFigure = this.createElement("figure", "");
-    const contentImg = this.createElement("img") as HTMLImageElement;
-    const contentDiv = this.createElement("div", "window-content-div");
-    const contentH1 = this.createElement("h1", "window-heading");
-    const contentP = this.createElement("p", "window-text");
-    const contentA = this.createElement(
-      "a",
-      "window-link"
-    ) as HTMLAnchorElement;
-
-    contentArea.dataset.target = `#modal${windowIndex + 1}`;
 
     centerText.innerText = this.titleText;
     spacerLeft.append(minimize);
@@ -249,21 +230,45 @@ class CreateProjectWindows extends CreateElement {
     spacerRight.append(close);
     menubar.append(spacerLeft, menubarCenter, spacerRight);
 
+    // window area
+    const windowArea = this.createElement(
+      "div",
+      `window`,
+      `window-${windowIndex + 1}`
+    );
+
+    // content area
+    const contentArea = this.createElement("div", "content-area show-modal");
+    const contentAreaBG = this.createElement("div", "content-area-background");
+    const contentSection = this.createElement("section", "");
+    const contentArticle = this.createElement("article", "");
+    const contentFigure = this.createElement("figure", "");
+    const contentImg = this.createElement("img") as HTMLImageElement;
+
+    contentArea.dataset.target = `#modal${windowIndex + 1}`;
     contentImg.src = this.imgURL;
-    contentH1.innerHTML = this.titleText;
+    /*     contentH1.innerHTML = this.titleText;
     contentP.innerHTML = this.description;
     contentA.innerHTML = "See the live version";
-    contentA.href = this.linkURL;
-
+    contentA.href = this.linkURL; */
     contentArea.append(contentAreaBG);
-    contentAreaBG.append(contentArticle);
-    contentArticle.append(contentSection);
-    contentSection.append(contentFigure);
+    contentAreaBG.append(contentSection);
+    contentSection.append(contentArticle);
+    contentArticle.append(contentFigure);
     contentFigure.append(contentImg);
-    contentSection.append(contentDiv);
+    /*     contentSection.append(contentDiv);
     contentDiv.append(contentH1);
     contentDiv.append(contentP);
     contentDiv.append(contentA);
+ */
+
+    /*     const contentDiv = this.createElement("div", "window-content-div");
+    const contentH1 = this.createElement("h1", "window-heading");
+    const contentP = this.createElement("p", "window-text");
+    const contentA = this.createElement(
+      "a",
+      "window-link"
+    ) as HTMLAnchorElement; */
 
     windowArea.append(menubar);
     windowArea.append(contentArea);
