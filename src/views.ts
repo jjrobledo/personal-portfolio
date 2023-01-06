@@ -183,6 +183,8 @@ class ProjectHeader extends CreateElement {
   }
 }
 
+class CreateModalWindows extends CreateElement {}
+
 class CreateProjectWindows extends CreateElement {
   private titleText: string;
   private imgURL: string;
