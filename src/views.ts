@@ -233,23 +233,19 @@ class CreateProjectWindows extends CreateElement {
     return menubar;
   }
 
-  public generateWindow(windowIndex: number): HTMLElement {
-    const menubar = this.generateMenuBar();
-    // window area
-    const windowArea = this.createElement(
-      "div",
-      `window`,
-      `window-${windowIndex + 1}`
-    );
-
-    // content area
+  public generateContentArea() {
     const contentArea = this.createElement("div", "content-area show-modal");
     const contentAreaBG = this.createElement("div", "content-area-background");
+
+    return [contentArea, contentAreaBG];
+  }
+
+  public generateWindowContent(windowIndex: number) {
+    const [contentArea, contentAreaBG] = this.generateContentArea();
     const contentSection = this.createElement("section", "");
     const contentArticle = this.createElement("article", "");
     const contentFigure = this.createElement("figure", "");
     const contentImg = this.createElement("img") as HTMLImageElement;
-
     contentArea.dataset.target = `#modal${windowIndex + 1}`;
     contentImg.src = this.imgURL;
     /*     contentH1.innerHTML = this.titleText;
@@ -267,13 +263,17 @@ class CreateProjectWindows extends CreateElement {
     contentDiv.append(contentA);
  */
 
-    /*     const contentDiv = this.createElement("div", "window-content-div");
-    const contentH1 = this.createElement("h1", "window-heading");
-    const contentP = this.createElement("p", "window-text");
-    const contentA = this.createElement(
-      "a",
-      "window-link"
-    ) as HTMLAnchorElement; */
+    return contentArea;
+  }
+
+  public generateWindow(windowIndex: number): HTMLElement {
+    const menubar = this.generateMenuBar();
+    const windowArea = this.createElement(
+      "div",
+      `window`,
+      `window-${windowIndex + 1}`
+    );
+    const contentArea = this.generateWindowContent(windowIndex);
 
     windowArea.append(menubar);
     windowArea.append(contentArea);
