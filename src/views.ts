@@ -146,26 +146,6 @@ class Header extends CreateElement {
   }
 }
 
-class About extends CreateElement {
-  constructor() {
-    super();
-  }
-
-  public generateAbout(): HTMLElement {
-    const aboutDiv = this.createElement("div", "about");
-    const h3 = this.createElement("h3", "about-heading");
-    const p = this.createElement("p", "about-text");
-
-    h3.innerHTML = "About Me";
-    p.innerHTML =
-      "archaeologist excited to shift to the challenging and exciting world of software engineering. I enjoy learning new technologies and can pick up new languages and frameworks quickly. My background in project and partnership management enables me to approach each project with a well-rounded and business-focused perspective.";
-
-    aboutDiv.append(h3, p);
-
-    return aboutDiv;
-  }
-}
-
 class ProjectHeader extends CreateElement {
   constructor() {
     super();
