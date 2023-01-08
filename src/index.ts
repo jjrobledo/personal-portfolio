@@ -80,6 +80,39 @@ left.addEventListener("click", prevWindow);
 const right = document.querySelector(".window-btn-right")!;
 right.addEventListener("click", nextWindow);
 
+const modals = document.querySelectorAll(".modal");
+const overlay = document.querySelector(".overlay");
+const clickCloseModal = document.querySelectorAll(".close-modal");
+const clickOpenModal = document.querySelectorAll(".show-modal");
+
+clickOpenModal.forEach((win) => {
+  win.addEventListener("click", () => {
+    document.querySelector(win.dataset.target).classList.remove("hidden");
+    overlay.classList.remove("hidden");
+  });
+});
+
+clickCloseModal.forEach((win) => {
+  win.addEventListener("click", () => {
+    document.querySelector(win.dataset.target).classList.add("hidden");
+    overlay.classList.add("hidden");
+  });
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modals.forEach((modal) => modal.classList.add("hidden"));
+    overlay.classList.add("hidden");
+  }
+});
+
+window.onclick = (e) => {
+  if (e.target === overlay) {
+    modals.forEach((modal) => modal.classList.add("hidden"));
+    overlay.classList.add("hidden");
+  }
+};
+
 /* class WindowSlider {
   windows: NodeListOf<Element>
   projects: Element
