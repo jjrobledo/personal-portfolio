@@ -169,7 +169,7 @@ class CreateProjectWindows extends CreateElement {
     this.gitHubURL = project.getGitHubLink();
   }
 
-  public generateMenuBar() {
+  public generateMenuBar(windowIndex: number, isModal: boolean = false) {
     // menu bar
     const menubar = this.createElement("div", "menu-bar");
     const spacerLeft = this.createElement("div", "basic-box spacer-left");
@@ -179,7 +179,13 @@ class CreateProjectWindows extends CreateElement {
     const centerText = this.createElement("div", "center");
     const barsRight = this.createElement("div", "right");
     const spacerRight = this.createElement("div", "basic-box spacer-right");
-    const close = this.createElement("div", "basic-box");
+    const close = this.createElement(
+      "div",
+      `${isModal ? "basic-box close-btn close-modal" : "basic-box close-btn"}`
+    );
+
+    close.dataset.target = `#modal${windowIndex + 1}`;
+
     const bar = this.createElement("div", "bars");
 
     centerText.innerText = this.name;
@@ -302,7 +308,7 @@ class CreateProjectWindows extends CreateElement {
       `window-${windowIndex + 1}`
     );
 
-    const menubar = this.generateMenuBar();
+    const menubar = this.generateMenuBar(windowIndex);
     const contentArea = this.generateWindowContent(windowIndex);
 
     windowArea.append(menubar);
@@ -312,12 +318,12 @@ class CreateProjectWindows extends CreateElement {
   }
 
   public generateModalWindow(windowIndex: number): HTMLElement {
-    const menubar = this.generateMenuBar();
+    const menubar = this.generateMenuBar(windowIndex, true);
     const contentArea = this.generateModalContent(windowIndex);
 
     const windowArea = this.createElement(
       "div",
-      `modal-window modal`,
+      `modal-window modal hidden`,
       `modal${windowIndex + 1}`
     );
 
