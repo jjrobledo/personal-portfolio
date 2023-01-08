@@ -150,13 +150,23 @@ class Header extends CreateElement {
 class CreateModalWindows extends CreateElement {}
 
 class CreateProjectWindows extends CreateElement {
-  private titleText: string;
+  private name: string;
+  private tech: string;
+  private problem: string;
+  private solution: string;
   private imgURL: string;
+  private linkURL: string;
+  private gitHubURL: string;
 
   constructor(project: ProjectTemplate) {
     super();
-    this.titleText = project.getName();
+    this.name = project.getTitle();
+    this.tech = project.getTech();
+    this.problem = project.getProblem();
+    this.solution = project.getSolution();
     this.imgURL = project.getScreenshotURL();
+    this.linkURL = project.getProjectLink();
+    this.gitHubURL = project.getGitHubLink();
   }
 
   public generateMenuBar() {
@@ -172,7 +182,7 @@ class CreateProjectWindows extends CreateElement {
     const close = this.createElement("div", "basic-box");
     const bar = this.createElement("div", "bars");
 
-    centerText.innerText = this.titleText;
+    centerText.innerText = this.name;
     spacerLeft.append(minimize);
     barsLeft.append(
       bar.cloneNode(true),
@@ -232,7 +242,7 @@ class CreateProjectWindows extends CreateElement {
     const contentSection = this.createElement("section", "proj-section");
     const contentArticle = this.createElement("article", "proj-article");
     const projectName = this.createElement("h3", "proj-name");
-    const projectDescription = this.createElement("p", "proj-descrip tech");
+    const projectTech = this.createElement("p", "proj-descrip tech");
     const problemHeading = this.createElement("h4", "probsol problem");
     const problemStatement = this.createElement(
       "p",
@@ -250,11 +260,11 @@ class CreateProjectWindows extends CreateElement {
     const githubLinkDiv = this.createElement("div", "link-div");
     const githubLinkAnchor = this.createElement("a", "proj-link");
 
-    linkAnchor.href = "test";
+    linkAnchor.href = this.linkURL;
     linkAnchor.target = "_blank";
     linkAnchor.innerHTML = "See it live!";
 
-    githubLinkAnchor.href = "test";
+    githubLinkAnchor.href = this.gitHubURL;
     githubLinkAnchor.target = "_blank";
     githubLinkAnchor.innerHTML = "View the project on Github";
 
@@ -264,18 +274,18 @@ class CreateProjectWindows extends CreateElement {
     linkSection.append(linkDiv);
     linkSection.append(githubLinkDiv);
 
-    projectName.innerHTML = "test";
-    projectDescription.innerHTML = "description";
+    projectName.innerHTML = this.name;
+    projectTech.innerHTML = this.tech;
     problemHeading.innerHTML = "Problem";
-    problemStatement.innerHTML = "this is the problem";
+    problemStatement.innerHTML = this.problem;
     solutionHeading.innerHTML = "Solution";
-    solutionStatement.innerHTML = "this was the solution";
+    solutionStatement.innerHTML = this.solution;
 
     contentArea.append(contentAreaBG);
     contentAreaBG.append(contentSection);
     contentSection.append(contentArticle);
     contentArticle.append(projectName);
-    contentArticle.append(projectDescription);
+    contentArticle.append(projectTech);
     contentArticle.append(problemHeading);
     contentArticle.append(problemStatement);
     contentArticle.append(solutionHeading);
