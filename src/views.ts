@@ -146,23 +146,6 @@ class Header extends CreateElement {
   }
 }
 
-class ProjectHeader extends CreateElement {
-  constructor() {
-    super();
-  }
-
-  public generateProjectHeader(): HTMLElement {
-    const projectHeadingDiv = this.createElement("div", "projects-heading");
-    const h3 = this.createElement("h3", "project-h3");
-
-    h3.innerHTML = "Projects";
-
-    projectHeadingDiv.append(h3);
-
-    return projectHeadingDiv;
-  }
-}
-
 class CreateModalWindows extends CreateElement {}
 
 class CreateProjectWindows extends CreateElement {
