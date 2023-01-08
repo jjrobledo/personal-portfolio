@@ -323,7 +323,7 @@ figure img {
   font-style: italic;
 }
 
-.link-div {
+.link-section {
   display: flex;
   flex-direction: row;
   gap: 0.8rem;
