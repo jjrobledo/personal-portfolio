@@ -43,6 +43,7 @@ export class ProjectListView {
       .forEach((project: ProjectTemplate, index) => {
         const win = new CreateProjectWindows(project);
         div.append(win.generateWindow(index));
+        div.append(win.generateModalWindow(index));
       });
 
     return div;
@@ -201,6 +202,13 @@ class CreateProjectWindows extends CreateElement {
     return [contentArea, contentAreaBG];
   }
 
+  public generateModalContentArea() {
+    const contentArea = this.createElement("div", "content-area");
+    const contentAreaBG = this.createElement("div", "content-area-background");
+
+    return [contentArea, contentAreaBG];
+  }
+
   public generateWindowContent(windowIndex: number) {
     const [contentArea, contentAreaBG] = this.generateContentArea();
     const contentSection = this.createElement("section", "");
@@ -219,6 +227,64 @@ class CreateProjectWindows extends CreateElement {
     return contentArea;
   }
 
+  public generateModalContent(windowIndex: number) {
+    const [contentArea, contentAreaBG] = this.generateModalContentArea();
+    const contentSection = this.createElement("section", "proj-section");
+    const contentArticle = this.createElement("article", "proj-article");
+    const projectName = this.createElement("h3", "proj-name");
+    const projectDescription = this.createElement("p", "proj-descrip tech");
+    const problemHeading = this.createElement("h4", "probsol problem");
+    const problemStatement = this.createElement(
+      "p",
+      "proj-descrip problem-statement"
+    );
+    const solutionHeading = this.createElement("h4", "probsol solution");
+    const solutionStatement = this.createElement(
+      "p",
+      "proj-descrip solution-statement"
+    );
+
+    const linkSection = this.createElement("section", "link-section");
+    const linkDiv = this.createElement("div", "link-div");
+    const linkAnchor = this.createElement("a", "proj-link");
+    const githubLinkDiv = this.createElement("div", "link-div");
+    const githubLinkAnchor = this.createElement("a", "proj-link");
+
+    linkAnchor.href = "test";
+    linkAnchor.target = "_blank";
+    linkAnchor.innerHTML = "See it live!";
+
+    githubLinkAnchor.href = "test";
+    githubLinkAnchor.target = "_blank";
+    githubLinkAnchor.innerHTML = "View the project on Github";
+
+    linkDiv.append(linkAnchor);
+    githubLinkDiv.append(githubLinkAnchor);
+
+    linkSection.append(linkDiv);
+    linkSection.append(githubLinkDiv);
+
+    projectName.innerHTML = "test";
+    projectDescription.innerHTML = "description";
+    problemHeading.innerHTML = "Problem";
+    problemStatement.innerHTML = "this is the problem";
+    solutionHeading.innerHTML = "Solution";
+    solutionStatement.innerHTML = "this was the solution";
+
+    contentArea.append(contentAreaBG);
+    contentAreaBG.append(contentSection);
+    contentSection.append(contentArticle);
+    contentArticle.append(projectName);
+    contentArticle.append(projectDescription);
+    contentArticle.append(problemHeading);
+    contentArticle.append(problemStatement);
+    contentArticle.append(solutionHeading);
+    contentArticle.append(solutionStatement);
+    contentArticle.append(linkSection);
+
+    return contentArea;
+  }
+
   public generateWindow(windowIndex: number): HTMLElement {
     const windowArea = this.createElement(
       "div",
@@ -228,6 +294,22 @@ class CreateProjectWindows extends CreateElement {
 
     const menubar = this.generateMenuBar();
     const contentArea = this.generateWindowContent(windowIndex);
+
+    windowArea.append(menubar);
+    windowArea.append(contentArea);
+
+    return windowArea;
+  }
+
+  public generateModalWindow(windowIndex: number): HTMLElement {
+    const menubar = this.generateMenuBar();
+    const contentArea = this.generateModalContent(windowIndex);
+
+    const windowArea = this.createElement(
+      "div",
+      `modal-window modal`,
+      `modal${windowIndex + 1}`
+    );
 
     windowArea.append(menubar);
     windowArea.append(contentArea);
