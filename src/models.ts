@@ -3,32 +3,57 @@ export class Model {
 }
 
 export class ProjectTemplate {
-  private name: string;
-  private description: string;
+  private title: string;
+  private tech: string;
+  private problem: string;
+  private solution: string;
   private screenshotURL: string;
-  private linkURL: string;
+  private projectLink: string;
+  private gitHubLink: string;
 
-  constructor(n: string, d: string, s: string, l: string) {
-    this.name = n;
-    this.description = d;
-    this.screenshotURL = s;
-    this.linkURL = l;
+  constructor(
+    title: string,
+    tech: string,
+    problem: string,
+    solution: string,
+    screenshot: string,
+    projectLink: string,
+    gitHubLink: string
+  ) {
+    this.title = title;
+    this.tech = tech;
+    this.problem = problem;
+    this.solution = solution;
+    this.screenshotURL = screenshot;
+    this.projectLink = projectLink;
+    this.gitHubLink = gitHubLink;
   }
 
-  public getName(): string {
-    return this.name;
+  public getTitle(): string {
+    return this.title;
   }
 
-  public getDescription(): string {
-    return this.description;
+  public getTech(): string {
+    return this.tech;
+  }
+
+  public getProblem(): string {
+    return this.problem;
+  }
+
+  public getSolution(): string {
+    return this.solution;
   }
 
   public getScreenshotURL(): string {
     return this.screenshotURL;
   }
 
-  public getLinkURL(): string {
-    return this.linkURL;
+  public getProjectLink(): string {
+    return this.projectLink;
+  }
+  public getGitHubLink(): string {
+    return this.gitHubLink;
   }
 }
 
@@ -38,13 +63,25 @@ export class ProjectList {
   constructor(
     projects: {
       name: string;
-      description: string;
+      tech: string;
+      problem: string;
+      solution: string;
       imageURL: string;
       linkURL: string;
+      githubURL: string;
     }[]
   ) {
     this.projects = projects.map(
-      (e) => new ProjectTemplate(e.name, e.description, e.imageURL, e.linkURL)
+      (e) =>
+        new ProjectTemplate(
+          e.name,
+          e.tech,
+          e.problem,
+          e.solution,
+          e.imageURL,
+          e.linkURL,
+          e.githubURL
+        )
     );
   }
 
