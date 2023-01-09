@@ -42,83 +42,95 @@ class Controller {
 const app = new Controller(data);
 app.renderApp();
 
-const windows = document.querySelectorAll(".window");
-const projects: HTMLElement = document.querySelector(".projects-div")!;
-projects.style.overflow = "visible";
-let currentWindow = 0;
-const maxWindows = windows.length;
+let slidePosition = 0;
+const slides = document.getElementsByClassName("window-slide");
+const slidesLength = slides.length;
 
-function goToWindow(windowNumber: number) {
-  windows.forEach(
-    (window: HTMLDivElement, i: number) =>
-      (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)
-  );
+document.getElementById("next").addEventListener("click", function () {
+  moveToNext();
+});
+
+document.getElementById("prev").addEventListener("click", function () {
+  moveToPrevious();
+});
+
+function updateSlides() {
+  for (let slide of slides) {
+    slide.classList.remove("window-visible");
+    slide.classList.add("window-hidden");
+
+    slides[slidePosition].classList.add("window-visible");
+  }
 }
 
-goToWindow(0);
-
-function nextWindow(): void {
-  if (currentWindow === maxWindows - 1) {
-    currentWindow = 0;
+function moveToNext() {
+  if (slidePosition === slidesLength - 1) {
+    slidePosition = 0;
   } else {
-    currentWindow++;
+    slidePosition++;
   }
-  goToWindow(currentWindow);
+
+  updateSlides();
 }
 
-function prevWindow(): void {
-  if (currentWindow === 0) {
-    currentWindow = maxWindows - 1;
+function moveToPrevious() {
+  if (slidePosition === 0) {
+    slidePosition = slidesLength - 1;
   } else {
-    currentWindow--;
+    slidePosition--;
   }
-  goToWindow(currentWindow);
+  updateSlides();
 }
 
-const left = document.querySelector(".window-btn-left")!;
-left.addEventListener("click", prevWindow);
-const right = document.querySelector(".window-btn-right")!;
-right.addEventListener("click", nextWindow);
+const modals = document.querySelectorAll(".modal");
+const overlay = document.querySelector(".overlay");
+const clickCloseModal = document.querySelectorAll(".close-modal");
+const clickOpenModal = document.querySelectorAll(".show-modal");
 
-/* class WindowSlider {
-  windows: NodeListOf<Element>
-  projects: Element
-  currentWindow: number;
-  maxWindows: number;
-  btnLeft: Element
-  btnRight: Element
+clickOpenModal.forEach((win) => {
+  win.addEventListener("click", () => {
+    document.querySelector(win.dataset.target).classList.remove("hidden");
+    overlay.classList.remove("hidden");
+  });
+});
 
-  constructor() {
-    this.windows = document.querySelectorAll('.window')
-    this.projects = document.querySelector('.projects-div')!
-    this.btnRight = document.querySelector('.window-btn-right')!
-    this.btnLeft = document.querySelector('.window-btn-left')!
-    this.projects.style.overflow = 'visible'
-    this.currentWindow = 0;
-    this.maxWindows = this.windows.length;
-    console.log(this.windows)
+clickCloseModal.forEach((win) => {
+  win.addEventListener("click", () => {
+    document.querySelector(win.dataset.target).classList.add("hidden");
+    overlay.classList.add("hidden");
+  });
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modals.forEach((modal) => modal.classList.add("hidden"));
+    overlay.classList.add("hidden");
   }
+});
 
-  goToWindow(windowNumber) {
-    this.windows.forEach((window, i) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
+window.onclick = (e) => {
+  if (e.target === overlay) {
+    modals.forEach((modal) => modal.classList.add("hidden"));
+    overlay.classList.add("hidden");
   }
+};
 
-  nextWindow(): void {
-    console.log(this.windows)
-    if (this.currentWindow === this.maxWindows - 1) {
-      this.currentWindow = 0;
+function rot47(x) {
+  let s = [];
+  for (let i = 0; i < x.length; i++) {
+    let j = x.charCodeAt(i);
+    if (j >= 33 && j <= 126) {
+      s[i] = String.fromCharCode(33 + ((j + 14) % 94));
     } else {
-      this.currentWindow++;
+      s[i] = String.fromCharCode(j);
     }
-    this.goToWindow(this.currentWindow);
   }
-  
-  prevWindow():void {
-    if (this.currentWindow === 0) {
-      this.currentWindow = this.maxWindows - 1;
-    } else {
-      this.currentWindow--;
-    }
-    this.goToWindow(this.currentWindow);
-  }
-} */
+  return s.join("");
+}
+
+const emailIcon = document.querySelector(".mail-icn-link");
+
+emailIcon.addEventListener("click", () => {
+  emailIcon.href = `mailto:${rot47("C@3=65@];@D6;o8>2:=]4@>")}`;
+  console.log("test");
+});
