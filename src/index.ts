@@ -42,43 +42,45 @@ class Controller {
 const app = new Controller(data);
 app.renderApp();
 
-const windows = document.querySelectorAll(".window-element");
-const projects: HTMLElement = document.querySelector(".window-div")!;
-projects.style.overflow = "visible";
-let currentWindow = 0;
-const maxWindows = windows.length;
+let slidePosition = 0;
+const slides = document.getElementsByClassName("window-slide");
+const slidesLength = slides.length;
 
-function goToWindow(windowNumber: number) {
-  windows.forEach(
-    (window: HTMLDivElement, i: number) =>
-      (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)
-  );
-}
+document.getElementById("next").addEventListener("click", function () {
+  moveToNext();
+});
 
-goToWindow(0);
+document.getElementById("prev").addEventListener("click", function () {
+  moveToPrevious();
+});
 
-function nextWindow(): void {
-  if (currentWindow === maxWindows - 1) {
-    currentWindow = 0;
-  } else {
-    currentWindow++;
+function updateSlides() {
+  for (let slide of slides) {
+    slide.classList.remove("window-visible");
+    slide.classList.add("window-hidden");
+
+    slides[slidePosition].classList.add("window-visible");
   }
-  goToWindow(currentWindow);
 }
 
-function prevWindow(): void {
-  if (currentWindow === 0) {
-    currentWindow = maxWindows - 1;
+function moveToNext() {
+  if (slidePosition === slidesLength - 1) {
+    slidePosition = 0;
   } else {
-    currentWindow--;
+    slidePosition++;
   }
-  goToWindow(currentWindow);
+
+  updateSlides();
 }
 
-const left = document.querySelector(".window-btn-left")!;
-left.addEventListener("click", prevWindow);
-const right = document.querySelector(".window-btn-right")!;
-right.addEventListener("click", nextWindow);
+function moveToPrevious() {
+  if (slidePosition === 0) {
+    slidePosition = slidesLength - 1;
+  } else {
+    slidePosition--;
+  }
+  updateSlides();
+}
 
 const modals = document.querySelectorAll(".modal");
 const overlay = document.querySelector(".overlay");
