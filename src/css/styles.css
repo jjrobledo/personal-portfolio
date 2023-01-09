@@ -25,13 +25,10 @@ main {
   overflow: hidden;
 }
 
-/* 
-this is for carousel style 2
-
 .window-div .window,
-.window-div .window--hidden {
+.window-div .window-hidden {
   display: none;
-} */
+}
 
 .window {
   margin: auto;
@@ -43,7 +40,7 @@ this is for carousel style 2
   filter: drop-shadow(0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.447));
 }
 
-.window-div .window--visible {
+.window-div .window-visible {
   display: block;
   animation: fadeVisibility 0.5s;
 }
@@ -59,7 +56,7 @@ this is for carousel style 2
   }
 }
 
-.window-div .carousel__controls {
+.window-div .carousel-controls {
   display: flex;
   justify-content: space-between;
   width: 95%;
@@ -68,7 +65,7 @@ this is for carousel style 2
   transform: translateY(-50%);
 }
 
-.window-div .carousel__controls button {
+.window-div .carousel-controls button {
   border-radius: 5rem;
   border: 0;
   width: 3rem;
