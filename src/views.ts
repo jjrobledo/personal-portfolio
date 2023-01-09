@@ -26,27 +26,33 @@ export class ProjectListView {
   }
 
   public render(): HTMLDivElement {
-    let div = document.createElement("div");
+    const windowDiv = document.createElement("div");
+    const carouselControls = document.createElement("div");
     const btnLeft = document.createElement("button");
     const btnRight = document.createElement("button");
-    div.classList.add("window-div");
+    windowDiv.classList.add("window-div");
+    carouselControls.classList.add("carousel-controls");
+    btnLeft.setAttribute("id", "prev");
+    btnRight.setAttribute("id", "next");
     btnLeft.classList.add("window-btn", "window-btn-left");
     btnRight.classList.add("window-btn", "window-btn-right");
     btnLeft.innerHTML = "←";
     btnRight.innerHTML = "→";
 
-    div.append(btnLeft);
-    div.append(btnRight);
+    carouselControls.append(btnLeft);
+    carouselControls.append(btnRight);
 
     this.projectList
       .getProjects()
       .forEach((project: ProjectTemplate, index) => {
         const win = new CreateProjectWindows(project);
-        div.append(win.generateWindow(index));
-        div.append(win.generateModalWindow(index));
+        windowDiv.append(win.generateWindow(index));
+        windowDiv.append(win.generateModalWindow(index));
       });
 
-    return div;
+    windowDiv.append(carouselControls);
+
+    return windowDiv;
   }
 }
 
@@ -304,7 +310,11 @@ class CreateProjectWindows extends CreateElement {
   public generateWindow(windowIndex: number): HTMLElement {
     const windowArea = this.createElement(
       "div",
-      `window`,
+      `${
+        windowIndex === 0
+          ? "window window-slide window-visible"
+          : "window window-slide"
+      }`,
       `window-${windowIndex + 1}`
     );
 
