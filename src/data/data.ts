@@ -17,7 +17,7 @@ export const data = [
       "Most podcast apps are integrated into large music platforms. Since these platforms are music first, it can be difficult to browse and search podcast content.",
     solution:
       "Podcast App is a podcast exclusive web app that provides users with the ability to save their favorite podcasts to a feed and listen to podcast episodes without being distracted by content or features unrelated to podcasts.",
-    imageURL: "../images/podcast.png",
+    imageURL: "../images/pod.png",
     linkURL: "http://www.podcast.jesserobledo.xyz/",
     gitHubURL: "http://github.com/jjrobledo/podcast-app",
   },
