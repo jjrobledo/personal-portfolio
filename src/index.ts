@@ -115,45 +115,22 @@ window.onclick = (e) => {
   }
 };
 
-/* class WindowSlider {
-  windows: NodeListOf<Element>
-  projects: Element
-  currentWindow: number;
-  maxWindows: number;
-  btnLeft: Element
-  btnRight: Element
-
-  constructor() {
-    this.windows = document.querySelectorAll('.window')
-    this.projects = document.querySelector('.projects-div')!
-    this.btnRight = document.querySelector('.window-btn-right')!
-    this.btnLeft = document.querySelector('.window-btn-left')!
-    this.projects.style.overflow = 'visible'
-    this.currentWindow = 0;
-    this.maxWindows = this.windows.length;
-    console.log(this.windows)
-  }
-
-  goToWindow(windowNumber) {
-    this.windows.forEach((window, i) => (window.style.transform = `translateX(${(i - windowNumber) * 100}%)`)) 
-  }
-
-  nextWindow(): void {
-    console.log(this.windows)
-    if (this.currentWindow === this.maxWindows - 1) {
-      this.currentWindow = 0;
+function rot47(x) {
+  let s = [];
+  for (let i = 0; i < x.length; i++) {
+    let j = x.charCodeAt(i);
+    if (j >= 33 && j <= 126) {
+      s[i] = String.fromCharCode(33 + ((j + 14) % 94));
     } else {
-      this.currentWindow++;
+      s[i] = String.fromCharCode(j);
     }
-    this.goToWindow(this.currentWindow);
   }
-  
-  prevWindow():void {
-    if (this.currentWindow === 0) {
-      this.currentWindow = this.maxWindows - 1;
-    } else {
-      this.currentWindow--;
-    }
-    this.goToWindow(this.currentWindow);
-  }
-} */
+  return s.join("");
+}
+
+const emailIcon = document.querySelector(".mail-icn-link");
+
+emailIcon.addEventListener("click", () => {
+  emailIcon.href = `mailto:${rot47("C@3=65@];@D6;o8>2:=]4@>")}`;
+  console.log("test");
+});

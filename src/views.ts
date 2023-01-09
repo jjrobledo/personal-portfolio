@@ -133,19 +133,26 @@ class Header extends CreateElement {
     mailIcn.src = "./images/envelope-solid.svg";
     gitIcn.src = "./images/square-github.svg";
 
+    const mailA = this.createElement(
+      "a",
+      "header-link mail-icn-link"
+    ) as HTMLAnchorElement;
     const githubA = this.createElement("a", "header-link") as HTMLAnchorElement;
     const linkedinA = this.createElement(
       "a",
       "header-link"
     ) as HTMLAnchorElement;
+    mailA.href = "";
     githubA.href = this.githubURL;
     linkedinA.href = this.linkedinURL;
     githubA.target = "_blank";
     linkedinA.target = "_blank";
+
+    mailA.appendChild(mailIcn);
     githubA.appendChild(gitIcn);
     linkedinA.appendChild(linkedinIcn);
 
-    socialDiv.append(mailIcn, linkedinA, githubA);
+    socialDiv.append(mailA, linkedinA, githubA);
     nameDiv.append(nameH1, socialDiv);
     headerDiv.append(nameDiv, subtitleH2);
 
